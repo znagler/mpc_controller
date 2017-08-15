@@ -34,6 +34,17 @@ auto coeffs = polyfit(ptsx_trans, ptsy_trans, 3);
 
 ## Model Predictive Control with Latency
 
+The simulator mimics latency by sleeping the code thread for 100ms before actuating the controls.  To rememdy this, we need to always consider the state of the car 100ms in the future, instead of at its current position.  Using the help of the forum, I determined that each component of the vehicle state can be predicted using velocity `v`, the `latency` (`.1`), `steer_value`, the angle `psi` , cross track error `cte`, and the error-psi `epsi`:
+
+```
+double predicted_x = v * latency;
+double predicted_y = 0;
+double predicted_psi = v * -steer_value / Lf * latency;  
+double predicted_v = v + throttle_value * latency;
+double predicted_cte = cte +  (v * sin(epsi) * latency);
+double predicted_epsi = epsi + v * -steer_value / Lf * latency;
+```
+
 ## Dependencies
 
 * cmake >= 3.5

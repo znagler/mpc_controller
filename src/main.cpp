@@ -135,7 +135,7 @@ int main() {
           double predicted_x = v * latency;
           double predicted_y = 0;
           double predicted_psi = v * -steer_value / Lf * latency;  
-          double predicted_v = v + throttle_value * latency;      
+          double predicted_v = v + throttle_value * latency;
           double predicted_cte = cte +  (v * sin(epsi) * latency);
           double predicted_epsi = epsi + v * -steer_value / Lf * latency;
       
