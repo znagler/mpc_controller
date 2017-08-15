@@ -11,12 +11,17 @@ The actuator has two components - steering angle and throttle.
 
 In the model, the state updates with the following equations:
 
-x_[t] = x[t-1] + v[t-1] * cos(psi[t-1]) * dt
-y_[t] = y[t-1] + v[t-1] * sin(psi[t-1]) * dt
-psi_[t] = psi[t-1] + v[t-1] / Lf * delta[t-1] * dt
-v_[t] = v[t-1] + a[t-1] * dt
-cte[t] = f(x[t-1]) - y[t-1] + v[t-1] * sin(epsi[t-1]) * dt
-epsi[t] = psi[t] - psides[t-1] + v[t-1] * delta[t-1] / Lf * dt
+1. x_[t] = x[t-1] + v[t-1] * cos(psi[t-1]) * dt
+
+2. y_[t] = y[t-1] + v[t-1] * sin(psi[t-1]) * dt
+
+3. psi_[t] = psi[t-1] + v[t-1] / Lf * delta[t-1] * dt
+
+4. v_[t] = v[t-1] + a[t-1] * dt
+
+5. cte[t] = f(x[t-1]) - y[t-1] + v[t-1] * sin(epsi[t-1]) * dt
+
+6. epsi[t] = psi[t] - psides[t-1] + v[t-1] * delta[t-1] / Lf * dt
 
 
 ## Timestep Length and Elapsed Duration (N & dt)
