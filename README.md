@@ -9,6 +9,16 @@ Self-Driving Car Engineer Nanodegree Program
 The state of the model has 6 components - the x-position, y-position, the angle `psi`, velocity, cross track error `cte`, and the orientation error `epsi`.
 The actuator has two components - steering angle and throttle.
 
+In the model, the state updates with the following equations:
+
+x_[t] = x[t-1] + v[t-1] * cos(psi[t-1]) * dt
+y_[t] = y[t-1] + v[t-1] * sin(psi[t-1]) * dt
+psi_[t] = psi[t-1] + v[t-1] / Lf * delta[t-1] * dt
+v_[t] = v[t-1] + a[t-1] * dt
+cte[t] = f(x[t-1]) - y[t-1] + v[t-1] * sin(epsi[t-1]) * dt
+epsi[t] = psi[t] - psides[t-1] + v[t-1] * delta[t-1] / Lf * dt
+
+
 ## Timestep Length and Elapsed Duration (N & dt)
 
 I set the timestep length, `N` to `10` and the duration, `dt` to `.1` . The timestep length affects how far into the future the model will consider when optimizing the cost function for the controller.  The `dt` affects the speed of the car, with a lower `dt` making the car faster and vice versa.  The car can complete a lap with a `dt` of `.3` or higher, but it does so much more slowly.
