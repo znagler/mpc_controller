@@ -6,6 +6,9 @@ Self-Driving Car Engineer Nanodegree Program
 
 ## The Model
 
+The state of the model has 6 components - the x-position, y-position, the angle `psi`, velocity, cross track error `cte`, and the orientation error `epsi`.
+The actuator has two components - steering angle and throttle.
+
 ## Timestep Length and Elapsed Duration (N & dt)
 
 I set the timestep length, `N` to `10` and the duration, `dt` to `.1` . The timestep length affects how far into the future the model will consider when optimizing the cost function for the controller.  The `dt` affects the speed of the car, with a lower `dt` making the car faster and vice versa.  The car can complete a lap with a `dt` of `.3` or higher, but it does so much more slowly.
@@ -34,7 +37,7 @@ auto coeffs = polyfit(ptsx_trans, ptsy_trans, 3);
 
 ## Model Predictive Control with Latency
 
-The simulator mimics latency by sleeping the code thread for 100ms before actuating the controls.  To rememdy this, we need to always consider the state of the car 100ms in the future, instead of at its current position.  Using the help of the forum, I determined that each component of the vehicle state can be predicted using velocity `v`, the `latency` (`.1`), `steer_value`, the angle `psi` , cross track error `cte`, and the error-psi `epsi`:
+The simulator mimics latency by sleeping the code thread for 100ms before actuating the controls.  To rememdy this, we need to always consider the state of the car 100ms in the future, instead of at its current position.  Using the help of the forum, I determined that each component of the vehicle state can be predicted using velocity `v`, the `latency` (.1 for 100ms), `steer_value`, the angle `psi` , cross track error `cte`, and the error-psi `epsi`:
 
 ```
 double predicted_x = v * latency;
