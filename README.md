@@ -18,7 +18,8 @@ First, I changed the waypoints from the global coordinate system to the car's co
 double shift_y = ptsy[i]-py;
 
 ptsx[i] = (shift_x * cos(0-psi) - shift_y * sin(0-psi));
-ptsy[i] = (shift_x * sin(0-psi) + shift_y * cos(0-psi));```
+ptsy[i] = (shift_x * sin(0-psi) + shift_y * cos(0-psi));
+```
 
 Then, I loaded the waypoints into a vector and fit them into a 3rd degree polynomial using `polyfit` like so:
 
